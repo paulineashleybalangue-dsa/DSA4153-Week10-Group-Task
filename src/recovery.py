@@ -66,5 +66,7 @@ def assert_agreement(bundles: list[RecoveryBundle], atol: float = 1e-8) -> pd.Da
             if not base[col].equals(other[col]):
                 raise ValueError(f"Exact agreement failed for {col}: {bundle.source_file}")
         for col in ["lifeExp","gdpPercap"]:
-
-            
+            if not np.allclose(base[col].to_numpy(float), other[col].to_numpy(float),
+                               atol=atol, rtol=0, equal_nan=True):
+                raise ValueError(f"Numeric agreement failed for {col}: {bundle.source_file}")
+    return base.copy()
