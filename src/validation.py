@@ -9,3 +9,11 @@ import pandas as pd
 CANONICAL = ["country", "continent", "year", "lifeExp", "pop", "gdpPercap"]
 STRING_COLUMNS = ["country", "continent"]
 NUMERIC_COLUMNS = ["year", "lifeExp", "pop", "gdpPercap"]
+
+@dataclass
+class ValidationResult:
+    """Accepted canonical rows and rejected source rows with reasons."""
+    valid: pd.DataFrame
+    quarantine: pd.DataFrame
+
+    
