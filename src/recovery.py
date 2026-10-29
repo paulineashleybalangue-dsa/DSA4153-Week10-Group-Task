@@ -42,3 +42,12 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
         {"step":4,"source_file":path.name,"operation":"remove_exact_duplicates","rule":"all six canonical fields identical","rows_before":len(valid),"rows_after":len(deduped)},
         {"step":5,"source_file":path.name,"operation":"sort","rule":"country then year","rows_before":len(deduped),"rows_after":len(deduped)},
     ]
+    dup_log = duplicates[["source_record", *CANONICAL]].copy()
+
+    if not dup_log.empty:
+        dup_log.insert(0, "source_file", path.name)
+        dup_log.insert(2, "reason", "exact_duplicate_valid_record")
+    else:
+        dup_log = pd.DataFrame(
+            columns=["source_file", "source_record", "reason", *CANONICAL] 
+    )
