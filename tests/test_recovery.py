@@ -18,3 +18,8 @@ def test_exact_duplicates_are_removed_and_logged():
 def test_conflicting_country_year_key_stops_processing():
     with pytest.raises(ConflictingKeyError):
         recover_one(ROOT / "data/raw/conflicting_key.csv", MANIFEST)
+
+def test_reordered_rows_are_sorted_by_key():
+    bundle = recover_one(ROOT / "data/raw/country_records.csv", MANIFEST)
+    ordered = bundle.canonical.sort_values(["country","year"]).reset_index(drop=True)
+    pd.testing.assert_frame_equal(bundle.canonical, ordered)
