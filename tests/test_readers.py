@@ -13,3 +13,7 @@ def test_readers_normalize_to_canonical_columns(filename):
     df = read_records(ROOT / "data/raw" / filename, MANIFEST)
     assert list(df.columns) == CANONICAL
     assert len(df) == 1712
+
+def test_missing_column_is_file_level_error():
+    with pytest.raises(FileSchemaError, match="Missing|required"):
+        read_records(ROOT / "data/raw/missing_column.csv", MANIFEST)
