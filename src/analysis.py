@@ -32,3 +32,16 @@ def create_analyses(canonical: pd.DataFrame, reporting_year: int) -> dict[str, p
     numpy_match = bool(
         np.allclose(indexed, loop, atol=1e-10, rtol=0)
     )
+    max_abs_difference = float(np.max(np.abs(indexed - loop)))
+    pop_index = pd.DataFrame(indexed, columns=[str(y) for y in years])
+    pop_index.attrs["numpy_broadcast_vs_loop_pass"] = numpy_match
+    pop_index.attrs["numpy_broadcast_vs_loop_max_abs_difference"] = max_abs_difference
+    pop_index.insert(0, "country", countries)
+    pop_index.attrs["matrix_shape_before_broadcast"] = list(values.shape)
+    pop_index.attrs["baseline_shape"] = list(baseline.shape)
+    pop_index.attrs["matrix_shape_after_broadcast"] = list(indexed.shape)
+    # Boolean selection and aggregation demonstration.
+    selected = values[values > 0]
+    pop_index.attrs["boolean_selected_population_count"] = int(selected.size)
+    pop_index.attrs["selected_population_sum"] = int(selected.sum())
+    return {"asia_selected_year": asia, "country_history": phil, "population_index": pop_index}
