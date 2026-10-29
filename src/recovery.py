@@ -34,3 +34,4 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
         raise ConflictingKeyError(
             f"Conflicting key(s) in {path.name}: {conflicted[key].to_dict('records')}"
         )
+    deduped = deduped.sort_values(["country", "year"], kind="stable").reset_index(drop=True)
