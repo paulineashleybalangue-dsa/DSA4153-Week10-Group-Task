@@ -5,3 +5,7 @@ import math
 from typing import Any
 import numpy as np
 import pandas as pd
+
+CANONICAL = ["country", "continent", "year", "lifeExp", "pop", "gdpPercap"]
+STRING_COLUMNS = ["country", "continent"]
+NUMERIC_COLUMNS = ["year", "lifeExp", "pop", "gdpPercap"]
