@@ -31,3 +31,35 @@ def read_records(path: str | Path, manifest: dict[str, Any]) -> pd.DataFrame:
             return df[CANONICAL].copy()
         raise FileSchemaError(f"Unsupported format or unconfigured input: {path.name}")
     fmt = spec["format"]
+
+    try:
+        if fmt == "csv":
+            df = pd.read_csv(path, sep=spec["separator"], encoding=spec["encoding"],
+                             comment=spec.get("comment_prefix"), dtype=object)
+        elif fmt == "xlsx":
+            df = pd.read_excel(path, sheet_name=spec["sheet_name"], engine=spec.get("engine"),
+                               dtype=object)
+        elif fmt == "json":
+            obj = json.loads(path.read_text(encoding=spec.get("encoding", "utf-8")))
+            rows = obj[spec.get("record_path", "records")]
+            df = pd.DataFrame([{
+                target: _flatten_path(row, source)
+                for source, target in spec["source_to_canonical"].items()
+            } for row in rows])
+        elif fmt == "parquet":
+            df = pd.read_parquet(path, engine=spec.get("engine"))
+        else:
+            raise FileSchemaError(f"Unsupported format: {fmt}")
+    except FileSchemaError:
+        raise
+    except Exception as exc:
+        raise FileSchemaError(f"Could not read {path.name}: {exc}") from exc
+
+    if fmt != "json":
+        aliases = spec["source_to_canonical"]
+        # The extra CSV metadata field is intentionally ignored.
+        df = df.rename(columns=aliases)
+    missing = set(CANONICAL) - set(df.columns)
+    if missing:
+        raise FileSchemaError(f"{path.name} missing required columns: {sorted(missing)}")
+    return df[CANONICAL].copy()
