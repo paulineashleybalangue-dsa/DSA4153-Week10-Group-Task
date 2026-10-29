@@ -35,3 +35,10 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
             f"Conflicting key(s) in {path.name}: {conflicted[key].to_dict('records')}"
         )
     deduped = deduped.sort_values(["country", "year"], kind="stable").reset_index(drop=True)
+    audit = [
+        {"step":1,"source_file":path.name,"operation":"parse_and_normalize","rule":"manifest layout and canonical schema","rows_before":len(raw),"rows_after":len(raw)},
+        {"step":2,"source_file":path.name,"operation":"validate","rule":"manifest value/domain rules","rows_before":len(raw),"rows_after":len(result.valid)},
+        {"step":3,"source_file":path.name,"operation":"quarantine_invalid","rule":"retain original fields and source record number","rows_before":len(raw),"rows_after":len(result.valid)},
+        {"step":4,"source_file":path.name,"operation":"remove_exact_duplicates","rule":"all six canonical fields identical","rows_before":len(valid),"rows_after":len(deduped)},
+        {"step":5,"source_file":path.name,"operation":"sort","rule":"country then year","rows_before":len(deduped),"rows_after":len(deduped)},
+    ]
