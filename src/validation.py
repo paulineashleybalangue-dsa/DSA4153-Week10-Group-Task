@@ -40,4 +40,16 @@ def validate_records(df: pd.DataFrame, source_file: str, allowed_years: list[int
                     parsed[col] = val
             except (TypeError, ValueError):
                 reasons.append(f"missing_or_unparseable_{col}") 
-                
+
+        if "year" in parsed and math.isfinite(parsed["year"]):
+            if not parsed["year"].is_integer(): reasons.append("fractional_year")
+            elif int(parsed["year"]) not in allowed_years: reasons.append("year_out_of_range")
+        if "lifeExp" in parsed and math.isfinite(parsed["lifeExp"]):
+            if not (0 < parsed["lifeExp"] <= 120): reasons.append("lifeExp_out_of_range")
+        if "pop" in parsed and math.isfinite(parsed["pop"]):
+            if not parsed["pop"].is_integer(): reasons.append("fractional_population")
+            elif parsed["pop"] <= 0: reasons.append("population_out_of_range")
+        if "gdpPercap" in parsed and math.isfinite(parsed["gdpPercap"]):
+            if parsed["gdpPercap"] <= 0: reasons.append("gdpPercap_out_of_range")
+
+    
