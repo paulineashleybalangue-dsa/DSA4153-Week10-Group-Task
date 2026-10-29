@@ -19,3 +19,10 @@ class RecoveryBundle:
     quarantine: pd.DataFrame
     duplicates: pd.DataFrame
     audit: list[dict]
+
+def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
+    """Parse, validate, quarantine, deduplicate and sort one source file."""
+    raw = read_records(path, manifest)
+    result = validate_records(raw, path.name, manifest["allowed_years"], manifest["allowed_continents"])
+    valid = result.valid.copy()
+    key = manifest.get("key", ["country", "year"])
