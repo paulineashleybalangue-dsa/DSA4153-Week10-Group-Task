@@ -28,3 +28,13 @@ def test_missing_required_column_fails():
 def test_conflict_fixture_fails():
     with pytest.raises(ConflictingKeyError):
         recover_one(ROOT / "data/raw/conflicting_key.csv", MANIFEST)
+
+def test_corrupted_export_is_detected_when_parquet_dependency_available(tmp_path):
+    pytest.importorskip("pyarrow")
+    bundle = recover_one(ROOT / "data/raw/country_records.csv", MANIFEST)
+    write_canonical_formats(bundle.canonical, tmp_path)
+    df = pd.read_parquet(tmp_path / "canonical.parquet")
+    df.loc[0, "lifeExp"] += 1
+    df.to_parquet(tmp_path / "canonical.parquet", index=False)
+    with pytest.raises(ValueError, match="round-trip"):
+        reload_and_verify(bundle.canonical, tmp_path)
