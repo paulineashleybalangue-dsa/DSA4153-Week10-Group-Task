@@ -24,3 +24,7 @@ def test_unparseable_nonfinite_and_fractional_values_are_rejected():
 def test_missing_required_column_fails():
     with pytest.raises(FileSchemaError):
         read_records(ROOT / "data/raw/missing_column.csv", MANIFEST)
+
+def test_conflict_fixture_fails():
+    with pytest.raises(ConflictingKeyError):
+        recover_one(ROOT / "data/raw/conflicting_key.csv", MANIFEST)
