@@ -17,3 +17,7 @@ def test_readers_normalize_to_canonical_columns(filename):
 def test_missing_column_is_file_level_error():
     with pytest.raises(FileSchemaError, match="Missing|required"):
         read_records(ROOT / "data/raw/missing_column.csv", MANIFEST)
+
+def test_unsupported_existing_format_is_rejected():
+    with pytest.raises(FileSchemaError, match="Unsupported"):
+        read_records(ROOT / "data/raw/unsupported.txt", MANIFEST)
