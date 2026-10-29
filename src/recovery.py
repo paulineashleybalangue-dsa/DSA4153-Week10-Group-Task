@@ -29,3 +29,8 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
     duplicate_mask = valid.duplicated(subset=CANONICAL, keep="first")
     duplicates = valid.loc[duplicate_mask].copy()
     deduped = valid.loc[~duplicate_mask, CANONICAL].copy()
+    if deduped.duplicated(subset=key, keep=False).any():
+        conflicted = deduped[deduped.duplicated(subset=key, keep=False)].sort_values(key)
+        raise ConflictingKeyError(
+            f"Conflicting key(s) in {path.name}: {conflicted[key].to_dict('records')}"
+        )
