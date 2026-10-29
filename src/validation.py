@@ -65,3 +65,7 @@ def validate_records(df: pd.DataFrame, source_file: str, allowed_years: list[int
                 "year": int(parsed["year"]), "lifeExp": float(parsed["lifeExp"]),
                 "pop": int(parsed["pop"]), "gdpPercap": float(parsed["gdpPercap"])
             })
+
+    valid = pd.DataFrame(accepted, columns=["source_record", *CANONICAL])
+    quarantine = pd.DataFrame(rejected, columns=["source_file","source_record","reason",*CANONICAL])
+    return ValidationResult(valid, quarantine)
