@@ -23,3 +23,12 @@ def create_analyses(canonical: pd.DataFrame, reporting_year: int) -> dict[str, p
     matrix = subset.pivot(index="country", columns="year", values="pop").reindex(index=countries, columns=years)
     values = matrix.to_numpy(dtype=np.float64)
     baseline = values[:, [0]]
+    indexed = np.broadcast_to(values / baseline * 100, values.shape).copy()
+    # Independent loop check, intentionally separate from broadcast calculation.
+    loop = np.empty_like(indexed)
+    for i in range(values.shape[0]):
+        for j in range(values.shape[1]):
+            loop[i, j] = values[i, j] / values[i, 0] * 100
+    numpy_match = bool(
+        np.allclose(indexed, loop, atol=1e-10, rtol=0)
+    )
