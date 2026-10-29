@@ -6,3 +6,12 @@ CONTINENTS = ["Africa", "Americas", "Asia", "Europe", "Oceania"]
 
 def valid_row():
     return {"country":"Testland","continent":"Asia","year":2007,"lifeExp":70.0,"pop":1000,"gdpPercap":500.0}
+
+def test_invalid_rows_are_quarantined_before_integer_cast():
+    rows = [valid_row(), {**valid_row(), "country":""}, {**valid_row(), "year":"bad"},
+            {**valid_row(), "year":2007.5}, {**valid_row(), "pop":1000.5},
+            {**valid_row(), "lifeExp":float("inf")}, {**valid_row(), "pop":-1}]
+    result = validate_records(pd.DataFrame(rows), "fixture.csv", YEARS, CONTINENTS)
+    assert len(result.valid) == 1
+    assert len(result.quarantine) == 6
+    assert result.quarantine["source_record"].tolist() == [2,3,4,5,6,7]
