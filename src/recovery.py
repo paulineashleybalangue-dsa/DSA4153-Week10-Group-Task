@@ -52,3 +52,19 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
             columns=["source_file", "source_record", "reason", *CANONICAL] 
     )
     return RecoveryBundle(path.name, len(raw), deduped, result.quarantine, dup_log, audit)
+
+def assert_agreement(bundles: list[RecoveryBundle], atol: float = 1e-8) -> pd.DataFrame:
+    """Compare four recovered datasets by key and canonical values."""
+    if not bundles:
+        raise ValueError("No input datasets supplied")
+    base = bundles[0].canonical.reset_index(drop=True)
+    for bundle in bundles[1:]:
+        other = bundle.canonical.reset_index(drop=True)
+        if len(base) != len(other):
+            raise ValueError(f"Row-count disagreement: {bundles[0].source_file} vs {bundle.source_file}")
+        for col in ["country","continent","year","pop"]:
+            if not base[col].equals(other[col]):
+                raise ValueError(f"Exact agreement failed for {col}: {bundle.source_file}")
+        for col in ["lifeExp","gdpPercap"]:
+
+            
