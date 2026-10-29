@@ -9,3 +9,13 @@ from .validator import validate_records, CANONICAL
 
 class ConflictingKeyError(ValueError):
     """Raised when a country-year key has multiple valid payloads."""
+
+@dataclass
+class RecoveryBundle:
+    """Results from recovering one source format."""
+    source_file: str
+    raw_count: int
+    canonical: pd.DataFrame
+    quarantine: pd.DataFrame
+    duplicates: pd.DataFrame
+    audit: list[dict]
