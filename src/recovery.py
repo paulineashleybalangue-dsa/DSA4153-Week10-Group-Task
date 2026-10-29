@@ -26,3 +26,6 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
     result = validate_records(raw, path.name, manifest["allowed_years"], manifest["allowed_continents"])
     valid = result.valid.copy()
     key = manifest.get("key", ["country", "year"])
+    duplicate_mask = valid.duplicated(subset=CANONICAL, keep="first")
+    duplicates = valid.loc[duplicate_mask].copy()
+    deduped = valid.loc[~duplicate_mask, CANONICAL].copy()
