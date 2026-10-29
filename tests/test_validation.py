@@ -15,3 +15,11 @@ def test_invalid_rows_are_quarantined_before_integer_cast():
     assert len(result.valid) == 1
     assert len(result.quarantine) == 6
     assert result.quarantine["source_record"].tolist() == [2,3,4,5,6,7]
+
+def test_missing_key_and_out_of_range_values_fail_row_validation():
+    rows = [valid_row(), {**valid_row(), "year":None}, {**valid_row(), "continent":"Atlantis"},
+            {**valid_row(), "lifeExp":-1}, {**valid_row(), "gdpPercap":0}]
+    result = validate_records(pd.DataFrame(rows), "fixture.csv", YEARS, CONTINENTS)
+    assert len(result.valid) == 1
+    assert len(result.quarantine) == 4
+    
