@@ -51,3 +51,4 @@ def recover_one(path: Path, manifest: dict) -> RecoveryBundle:
         dup_log = pd.DataFrame(
             columns=["source_file", "source_record", "reason", *CANONICAL] 
     )
+    return RecoveryBundle(path.name, len(raw), deduped, result.quarantine, dup_log, audit)
