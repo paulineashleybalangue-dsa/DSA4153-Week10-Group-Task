@@ -52,4 +52,16 @@ def validate_records(df: pd.DataFrame, source_file: str, allowed_years: list[int
         if "gdpPercap" in parsed and math.isfinite(parsed["gdpPercap"]):
             if parsed["gdpPercap"] <= 0: reasons.append("gdpPercap_out_of_range")
 
-    
+        if reasons:
+            rejected.append({
+                "source_file": source_file, "source_record": record_no,
+                "reason": ";".join(dict.fromkeys(reasons)),
+                **original
+            })
+        else:
+            accepted.append({
+                "source_record": record_no,
+                "country": country, "continent": continent,
+                "year": int(parsed["year"]), "lifeExp": float(parsed["lifeExp"]),
+                "pop": int(parsed["pop"]), "gdpPercap": float(parsed["gdpPercap"])
+            })
