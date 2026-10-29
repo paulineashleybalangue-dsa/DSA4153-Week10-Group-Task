@@ -20,3 +20,7 @@ def test_unparseable_nonfinite_and_fractional_values_are_rejected():
             {**base,"year":2007.25}, {**base,"pop":100.5}]
     result = validate_records(pd.DataFrame(rows), "edge.csv", MANIFEST["allowed_years"], MANIFEST["allowed_continents"])
     assert len(result.quarantine) == 4
+
+def test_missing_required_column_fails():
+    with pytest.raises(FileSchemaError):
+        read_records(ROOT / "data/raw/missing_column.csv", MANIFEST)
