@@ -7,3 +7,10 @@ from src.readers import FileSchemaError
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = json.loads((ROOT / "data/raw/manifest.json").read_text(encoding="utf-8"))
+
+def test_exact_duplicates_are_removed_and_logged():
+    bundle = recover_one(ROOT / "data/raw/country_records.csv", MANIFEST)
+    assert bundle.raw_count == 1712
+    assert len(bundle.quarantine) == 6
+    assert len(bundle.duplicates) == 2
+    assert len(bundle.canonical) == 1704
