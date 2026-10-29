@@ -42,3 +42,15 @@ def reload_and_verify(canonical: pd.DataFrame, folder: Path, atol: float = 1e-8)
         if not same:
             raise ValueError(f"Export round-trip comparison failed: canonical.{suffix}")
     return checks
+
+def promote_staging(staging: Path, output: Path) -> None:
+    """Replace successful outputs only after the staged run has passed."""
+    backup = output.with_name(output.name + "_previous")
+    if backup.exists(): shutil.rmtree(backup)
+    if output.exists(): output.rename(backup)
+    try:
+        staging.rename(output)
+    except Exception:
+        if backup.exists() and not output.exists(): backup.rename(output)
+        raise
+    if backup.exists(): shutil.rmtree(backup)
