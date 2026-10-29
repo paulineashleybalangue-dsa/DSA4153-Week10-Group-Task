@@ -6,3 +6,6 @@ import pandas as pd
 import numpy as np
 from .readers import read_records, FileSchemaError
 from .validator import validate_records, CANONICAL
+
+class ConflictingKeyError(ValueError):
+    """Raised when a country-year key has multiple valid payloads."""
