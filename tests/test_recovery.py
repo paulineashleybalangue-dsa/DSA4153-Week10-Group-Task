@@ -14,3 +14,7 @@ def test_exact_duplicates_are_removed_and_logged():
     assert len(bundle.quarantine) == 6
     assert len(bundle.duplicates) == 2
     assert len(bundle.canonical) == 1704
+
+def test_conflicting_country_year_key_stops_processing():
+    with pytest.raises(ConflictingKeyError):
+        recover_one(ROOT / "data/raw/conflicting_key.csv", MANIFEST)
