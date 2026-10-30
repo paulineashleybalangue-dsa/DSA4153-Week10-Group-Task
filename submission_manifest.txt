@@ -11,7 +11,7 @@ Final Version Tag:
 week10-v1.0
 
 Final Commit Hash:
-PENDING
+7c4f82c4670feab73b4bd35df73c9526e0056cdd
 
 Verification Results:
 - Four input formats processed successfully.
