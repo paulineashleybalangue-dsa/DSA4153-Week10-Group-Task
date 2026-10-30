@@ -1,0 +1,38 @@
+DSA4153 WEEK 10 GROUP PROJECT
+Project: Four-Format Data Recovery
+
+Repository:
+https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task.git
+
+Branch:
+alano_integration
+
+Final Version Tag:
+week10-v1.0
+
+Final Commit Hash:
+7c4f82c4670feab73b4bd35df73c9526e0056cdd
+
+Verification Results:
+- Four input formats processed successfully.
+- 1,704 canonical records recovered.
+- 24 records quarantined.
+- 8 duplicate copies removed.
+- 20 automated tests passed.
+- Export round-trip verification passed.
+
+Generated Outputs:
+- Canonical CSV, XLSX, JSON, and Parquet files.
+- Analysis results.
+- Validation and audit records.
+
+Submission Contents:
+- Source code
+- Configuration and input data
+- Automated tests
+- README documentation
+- Notebook and HTML report
+- Contributions record
+- Code review documentation
+- Submission manifest
+- Generated outputs
