@@ -17,8 +17,8 @@ def test_required_pandas_analyses_and_numpy_population_index():
     assert result["population_index"]["1982"].tolist() == pytest.approx([100,100,100])
     assert int(bundle.canonical.query("continent == 'Asia' and year == 2007")["pop"].sum()) == 3811953827
 
-    def test_reporting_year_can_be_changed_without_editing_processing_functions():
-        bundle = recover_one(ROOT / "data/raw/country_records.csv", MANIFEST)
-        result = create_analyses(bundle.canonical, 1997)
-        assert len(result["asia_selected_year"]) > 0
-        assert set(result["asia_selected_year"]["year"]) == {1997}
+def test_reporting_year_can_be_changed_without_editing_processing_functions():
+    bundle = recover_one(ROOT / "data/raw/country_records.csv", MANIFEST)
+    result = create_analyses(bundle.canonical, 1997)
+    assert len(result["asia_selected_year"]) > 0
+    assert set(result["asia_selected_year"]["year"]) == {1997}

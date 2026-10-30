@@ -27,17 +27,17 @@ The input observations cover 1952–2007. These are historical data, not current
 | Rolando Banjo Alano | rolandobanjo.alano@ust.edu.ph | Main program integration, documentation, reports, test results, submission coordination |
 
 ## Repository Structure
-- main.py — Main command-line program and orchestration.
-- config.json — Input/output paths, reporting year, and comparison tolerances.
-- data/raw/ — Original supplied input files and manifest. Preserve their original contents.
-- src/ — Reusable data loading, validation, recovery, analysis, export, and audit modules.
-- tests/ — Automated tests for the project's functions and processing steps.
-- outputs/ — Generated datasets, analysis results, validation records, and reports.
-- notebooks/report.ipynb — Notebook demonstrating the project code.
-- notebooks/report.html — HTML export of the notebook.
-- contributions.csv — Record of individual member contributions.
-- reviews.md — Documentation of code reviews.
-- submission_manifest.txt — Final submission information.
+- `main.py` — Main command-line program and orchestration.
+- `config.json` — Input/output paths, reporting year, and comparison tolerances.
+- `data/raw/` — Original supplied input files and manifest. Preserve their original contents.
+- `src/` — Reusable data loading, validation, recovery, analysis, export, and audit modules.
+- `tests/` — Automated tests for the project's functions and processing steps.
+- `outputs/` — Generated datasets, analysis results, validation records, audit logs, and test results.
+- `notebooks/report.ipynb` — Notebook demonstrating the project code.
+- `notebooks/report.html` — HTML export of the notebook.
+- `contributions.csv` — Record of individual member contributions.
+- `reviews.md` — Documentation of code reviews.
+- `submission_manifest.txt` — Final submission information.
 
 ## Setup
 Use Python 3.10+ (or a version compatible with the installed dependencies).
@@ -70,6 +70,8 @@ python -m pytest -v
 ```
 
 Tests cover normal format reading, schema failures, missing files, invalid numeric values, non-finite and fractional values, invalid domains, duplicates, conflicting keys, reordered rows, analysis controls, export round trips, and corrupted exports.
+
+The latest verified run collected 20 tests, with all 20 tests passing.
 
 ## Expected Results
 For each normal input format:
@@ -109,7 +111,7 @@ The `outputs/` directory should contain:
 - validation.csv
 - audit_log.csv
 **Test results**
-- test_results.txt
+- test_results.txt — summary of the automated test execution.
 The final ZIP must also include the supplied `data/` folder, source code, tests, notebook and HTML export, contribution/review evidence, and submission manifest.
 
 ## Git Collaboration and Submission

@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-8.3.4, pluggy-1.5.0 -- /opt/anaconda3/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/banjo/Downloads/DSA4153-Week10-Group-Task
+plugins: anyio-4.7.0
+collecting ... collected 20 items
+
+tests/test_analysis.py::test_required_pandas_analyses_and_numpy_population_index PASSED [  5%]
+tests/test_analysis.py::test_reporting_year_can_be_changed_without_editing_processing_functions PASSED [ 10%]
+tests/test_exports.py::test_canonical_exports_round_trip PASSED          [ 15%]
+tests/test_exports.py::test_corrupted_export_values_fail_comparison PASSED [ 20%]
+tests/test_failures.py::test_missing_file_fails PASSED                   [ 25%]
+tests/test_failures.py::test_unparseable_nonfinite_and_fractional_values_are_rejected PASSED [ 30%]
+tests/test_failures.py::test_missing_required_column_fails PASSED        [ 35%]
+tests/test_failures.py::test_conflict_fixture_fails PASSED               [ 40%]
+tests/test_failures.py::test_corrupted_export_is_detected_when_parquet_dependency_available PASSED [ 45%]
+tests/test_readers.py::test_readers_normalize_to_canonical_columns[country_records.csv] PASSED [ 50%]
+tests/test_readers.py::test_readers_normalize_to_canonical_columns[country_records.xlsx] PASSED [ 55%]
+tests/test_readers.py::test_readers_normalize_to_canonical_columns[country_records.json] PASSED [ 60%]
+tests/test_readers.py::test_readers_normalize_to_canonical_columns[country_records.parquet] PASSED [ 65%]
+tests/test_readers.py::test_missing_column_is_file_level_error PASSED    [ 70%]
+tests/test_readers.py::test_unsupported_existing_format_is_rejected PASSED [ 75%]
+tests/test_recovery.py::test_exact_duplicates_are_removed_and_logged PASSED [ 80%]
+tests/test_recovery.py::test_conflicting_country_year_key_stops_processing PASSED [ 85%]
+tests/test_recovery.py::test_reordered_rows_are_sorted_by_key PASSED     [ 90%]
+tests/test_validation.py::test_invalid_rows_are_quarantined_before_integer_cast PASSED [ 95%]
+tests/test_validation.py::test_missing_key_and_out_of_range_values_fail_row_validation PASSED [100%]
+
+============================== 20 passed in 2.02s ==============================
