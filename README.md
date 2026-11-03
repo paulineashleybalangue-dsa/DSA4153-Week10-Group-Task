@@ -40,16 +40,37 @@ The input observations cover 1952–2007. These are historical data, not current
 - `submission_manifest.txt` — Final submission information.
 
 ## Setup
-Use Python 3.10+ (or a version compatible with the installed dependencies).
+
+Use Python 3.10 or later, subject to compatibility with the installed dependencies.
+
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
+```
+
+Activate the environment using the command for your operating system:
+
+**Windows Command Prompt:**
+```bat
+.venv\Scripts\activate.bat
+```
+
+**Windows PowerShell:**
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+**macOS/Linux:**
+```bash
 source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
 python -m pip install --upgrade pip
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## Running the Program
@@ -126,6 +147,6 @@ The group collaboration process includes:
 5. Merging reviewed contributions while preserving individual commit history.
 6. Performing a fresh-clone verification before submission.
 
-The submitted version should be tagged `week10-v1.0`. Its full commit hash and repository URL must be recorded in `submission_manifest.txt`.
+The final submission will be identified by the `week10-v1.0` release tag. The final release commit hash and repository URL will be recorded in `submission_manifest.txt` after the final version has been committed and verified.
 
 The `outputs/` directory contains the generated deliverables and is included in the repository and final submission ZIP.
