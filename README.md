@@ -104,7 +104,7 @@ The `outputs/` directory should contain:
 **Analysis results**
 - asia_selected_year.csv
 - country_history.csv
-- population_index.csv**
+- population_index.csv
 **Validation and audit records**
 - quarantine.csv
 - duplicate_log.csv
@@ -128,4 +128,4 @@ The group collaboration process includes:
 
 The submitted version should be tagged `week10-v1.0`. Its full commit hash and repository URL must be recorded in `submission_manifest.txt`.
 
-The `outputs/` directory is ignored by Git by default, so generated deliverables must be included separately in the final group ZIP.
+The `outputs/` directory contains the generated deliverables and is included in the repository and final submission ZIP.
