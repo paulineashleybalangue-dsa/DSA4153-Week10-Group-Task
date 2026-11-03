@@ -1,7 +1,7 @@
-Member,Git Identity,Assigned Contribution
-Pauline Ashley Balangue,paulineashley.balangue@ust.edu.ph,"Four-format data loading, configuration, reader tests"
-Mary Belle Cubol,bellecubol16@gmail.com,"Data validation, quarantine, validation tests"
-Meghan Isabelle Espiritu,meghan.isabelle.espiritu@ust.edu.ph,"Duplicate removal, conflict detection, recovery tests"
-Mikaela Stefanie Tilo,mikaelastefanie.tilo@ust.edu.ph,"pandas analysis, NumPy matrix, calculation tests"
-Coleen Dian Fernandez,coleendian.fernandez@ust.edu.ph,"Exports, round-trip verification, auditing, export tests"
-Rolando Banjo Alano,rolandobanjo.alano@ust.edu.ph,"Main program integration, documentation, reports, test results, submission coordination"
+Member,Git Identity,Assigned Contribution,Reviewed Commit,Pull Request Link,Reviewed By,Review Status
+Pauline Ashley Balangue,paulineashley.balangue@ust.edu.ph,"Four-format data loading, configuration, reader tests",b2072d54ccbd01a84aa4b38066c1fab1d93689c0,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/1,Mary Belle Cubol,Approved
+Mary Belle Cubol,bellecubol16@gmail.com,"Data validation, quarantine, validation tests",83b082f745aac83ace9fbb41264e0668e30c69c0,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/2,Meghan Isabelle Espiritu,Approved
+Meghan Isabelle Espiritu,meghan.isabelle.espiritu@ust.edu.ph,"Duplicate removal, conflict detection, recovery tests",8b6a75e9b92998ada648ba071956c46760d5a8ea,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/3,Mikaela Stefanie Tilo,Approved
+Mikaela Stefanie Tilo,mikaelastefanie.tilo@ust.edu.ph,"pandas analysis, NumPy matrix, calculation tests",2a8b1517b8e4774a807ceba42f7e73593ed39de2,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/4,Coleen Dian Fernandez,Approved
+Coleen Dian Fernandez,coleendian.fernandez@ust.edu.ph,"Exports, round-trip verification, auditing, export tests",3555fbe3fcb7f804915ef48d0dce9009967d1c62,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/5,Rolando Banjo Alano,Approved
+Rolando Banjo Alano,rolandobanjo.alano@ust.edu.ph,"Main program integration, documentation, reports, test results, submission coordination",68f507142cf0ec9c00dede67810673ffd3ae53dd,https://github.com/paulineashleybalangue-dsa/DSA4153-Week10-Group-Task/pull/6,Pauline Ashley Balangue,Approved
