@@ -7688,7 +7688,7 @@ Tolerance: {'absolute_tolerance': 1e-08, 'relative_tolerance': 0}
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">analyses</span> <span class="o">=</span> <span class="n">create_analyses</span><span class="p">(</span><span class="n">canonical</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"reporting_year"</span><span class="p">,</span> <span class="mi">2007</span><span class="p">)))</span>
@@ -8045,6 +8045,60 @@ Philippine history rows: 12
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5e081619">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pop_index</span> <span class="o">=</span> <span class="n">analyses</span><span class="p">[</span><span class="s2">"population_index"</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original matrix shape:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"matrix_shape_before_broadcast"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Baseline matrix shape:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"baseline_shape"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Matrix shape after broadcasting:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"matrix_shape_after_broadcast"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of positive population values:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"boolean_selected_population_count"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sum of selected population values:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"selected_population_sum"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"NumPy broadcasting matches iterative loop:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"numpy_broadcast_vs_loop_pass"</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Maximum absolute difference:"</span><span class="p">,</span>
+      <span class="n">pop_index</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">"numpy_broadcast_vs_loop_max_abs_difference"</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Original matrix shape: [3, 6]
+Baseline matrix shape: [3, 1]
+Matrix shape after broadcasting: [3, 6]
+Number of positive population values: 18
+Sum of selected population values: 1917561862
+NumPy broadcasting matches iterative loop: True
+Maximum absolute difference: 0.0
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ef2661bc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8062,7 +8116,7 @@ Philippine history rows: 12
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1982</span><span class="p">,</span> <span class="mi">1987</span><span class="p">,</span> <span class="mi">1992</span><span class="p">,</span> <span class="mi">1997</span><span class="p">,</span> <span class="mi">2002</span><span class="p">,</span> <span class="mi">2007</span><span class="p">]</span>
@@ -8113,7 +8167,7 @@ Philippines 2007 population: 91077287
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Re-run the complete staged program from a terminal:</span>
