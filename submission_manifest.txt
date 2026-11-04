@@ -11,9 +11,14 @@ alano_integration
 Final Version Tag:
 week10-v1.0
 
-Final Release Commit:
-e7448507fa3aff3a7f1d6dde0bdbe8897a874409
+Code and Report Commit:
+790bb9cc9a3ea9a8d010678982b7aad3228212af
 
+Final Release Tag:
+week10-v1.0
+
+Release Tag Commit:
+a1575fee440ce2792f98c1f4fb3b6e44cc69f49c
 Input SHA-256 Hashes:
 country_records.csv:
 11567e9c8c3fbeda6115cdf0797b6d234a246e60b0d2156548088ecd30542ca8
